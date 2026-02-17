@@ -1,8 +1,21 @@
-# Projet-Evaluation-des-attaques-AD-
+# 🔐 Active Directory Attack Evaluation Lab
 
 ⚠️ All attack simulations were performed in a controlled lab environment for educational purposes only.
 
-Comprendre le fonctionnement des attaques AD et mettre mise en place des mecanismes de defense avec Wazuh pour la detection et reponse immediate, shuffle pour l'orchestration
 
-Ce projet va sur la base d'un scenario d'attaque reelles sur l'environnement Active Directory pour comprendre les techniques utilises par  les acteurs malveillants pour compromettre les systemes. Le but est de detecter ces attaques en ecrivant des regles wazuh ou en optimisant les regles existantes en suite repondre a ces attaques via le module Active-Response de Wazuh et l'orchestration avec suffle. 
+Ce projet présente une analyse complète des principales attaques Active Directory,
+leur exploitation dans un environnement contrôlé et les mécanismes de détection associés
+(SIEM, IDS, corrélation d’événements).
+
+## Objectifs
+
+- Comprendre les vecteurs d’attaque AD
+- Mesurer le MTTD / MTTR
+- Implémenter des mécanismes de détection
+- Automatiser la réponse à incident
+
+## Structure du projet
+
+Voir les sections détaillées ci-dessous.
+ 
 
