@@ -1,0 +1,45 @@
+<!--
+  Rule 110003 - Golden Ticket Attack
+  MITRE ATT&CK: T1558.001 - Steal or Forge Kerberos Tickets: Golden Ticket
+
+  Source: Windows Security Event ID 4624 (An account was successfully
+  logged on)
+
+  This is the hardest attack in the chain to detect: it perfectly mimics
+  a legitimate logon. It relies on a forged TGT signed with a stolen
+  krbtgt hash, so the Domain Controller accepts it without a real
+  Kerberos negotiation having taken place.
+
+  Indicators combined:
+    - LogonType 3 (network logon)
+    - AuthenticationPackageName = Kerberos
+    - LogonGuid is null ({00000000-0000-0000-0000-000000000000}) -
+      normally a unique GUID is generated per session; a null GUID means
+      no real Kerberos negotiation occurred
+    - TargetOutboundUserName missing/empty ("-")
+
+  Response: orchestrated via Shuffle - a webhook receives the Wazuh
+  alert and triggers an HTTP POST to a listener script running on the
+  Domain Controller, which pops up a visible alert on the domain
+  administrator's screen (deliberately non-disruptive: no automated
+  account action is taken, given how sensitive/critical this alert is
+  and the risk of false positives on a technique this hard to detect
+  with certainty).
+-->
+<group name="windows,active_directory,attack,credential_access,">
+
+  <rule id="110003" level="12">
+    <if_sid>60103</if_sid>
+    <field name="win.system.eventID">^4624$</field>
+    <field name="win.eventdata.logonType">^3$</field>
+    <field name="win.eventdata.AuthenticationPackageName">^Kerberos$</field>
+    <field name="win.eventdata.LogonGuid">^\{00000000-0000-0000-0000-000000000000\}$</field>
+    <field name="win.eventdata.TargetOutboundUserName">^-</field>
+    <options>no_full_log</options>
+    <description>ALERTE CRITIQUE : Attaque Golden Ticket détectée via GUID nul et utilisateur sortant manquant.</description>
+    <mitre>
+      <id>T1558.001</id>
+    </mitre>
+  </rule>
+
+</group>

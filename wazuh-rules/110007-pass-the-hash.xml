@@ -1,0 +1,43 @@
+<!--
+  Rule 110007 - Pass-the-Hash (PtH) Attack
+  MITRE ATT&CK: T1550.002 - Use Alternate Authentication Material: Pass the Hash
+
+  ****************************************************************
+  ** RECONSTRUCTED RULE - NOT a direct transcription **
+  ** Your source document only showed the *response* config
+  ** referencing rule_id 110007 (netsh.exe active-response block),
+  ** plus a prose description of the detection indicators for
+  ** Event ID 4624. No XML rule screenshot was available for this
+  ** attack, unlike the other four rules in this set.
+  ** This file is built from that prose description only:
+  **   - LogonType 3 or 9 (network / NewCredentials)
+  **   - LogonProcessName = NtLmSsp (NTLM used instead of Kerberos)
+  **   - LogonGuid null (no real Kerberos negotiation)
+  ** TEST THIS RULE AGAINST REAL PTH TRAFFIC IN YOUR LAB BEFORE
+  ** TRUSTING IT - the field names, if_sid, and exact regex syntax
+  ** are inferred to match the style of your other four rules, not
+  ** verified against your actual Wazuh output.
+  ****************************************************************
+
+  Source: Windows Security Event ID 4624 (An account was successfully
+  logged on)
+
+  Response: Wazuh Active-Response using the default Windows netsh.exe
+  script, blocking the attacker's source IP to interrupt the session.
+-->
+<group name="windows,active_directory,attack,lateral_movement,">
+
+  <rule id="110007" level="12">
+    <if_sid>60103</if_sid>
+    <field name="win.system.eventID">^4624$</field>
+    <field name="win.eventdata.logonType" type="pcre2">^3$|^9$</field>
+    <field name="win.eventdata.LogonProcessName">^NtLmSsp$</field>
+    <field name="win.eventdata.LogonGuid">^\{00000000-0000-0000-0000-000000000000\}$</field>
+    <options>no_full_log</options>
+    <description>Possible Pass-the-Hash (PtH) attack detected via NTLM logon with null LogonGuid</description>
+    <mitre>
+      <id>T1550.002</id>
+    </mitre>
+  </rule>
+
+</group>

@@ -1,0 +1,32 @@
+<!--
+  Rule 110002 - Kerberoasting Attack
+  MITRE ATT&CK: T1558.003 - Steal or Forge Kerberos Tickets: Kerberoasting
+
+  Source: Windows Security Event ID 4769 (A Kerberos service ticket was requested)
+
+  Detects a possible Kerberoasting attack by combining:
+    - TicketOptions 0x40810010 (forwardable, renewable, pre-auth)
+    - TicketEncryptionType 0x17 (RC4-HMAC) or 0x12 (AES) requested for a
+      service account (SPN) - RC4 in particular is weak and crackable offline
+
+  Response: two-pronged
+    - Reset the password of the targeted SPN account (after verifying it
+      is not a sensitive/excluded account - see excluded-accounts list
+      used by the reset script)
+    - Notify the domain administrator via Shuffle (email)
+-->
+<group name="windows,active_directory,attack,credential_access,">
+
+  <rule id="110002" level="12">
+    <if_sid>60103</if_sid>
+    <field name="win.system.eventID">^4769$</field>
+    <field name="win.eventdata.TicketOptions" type="pcre2">0x40810010</field>
+    <field name="win.eventdata.TicketEncryptionType" type="pcre2">0x17|0x12</field>
+    <options>no_full_log</options>
+    <description>Possible Kerberoasting attack</description>
+    <mitre>
+      <id>T1558.003</id>
+    </mitre>
+  </rule>
+
+</group>

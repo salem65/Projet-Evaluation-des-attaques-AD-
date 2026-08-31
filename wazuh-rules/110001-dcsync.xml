@@ -1,0 +1,45 @@
+<!--
+  Rule 110001 - DCSync Attack
+  MITRE ATT&CK: T1003.006 - OS Credential Dumping: DCSync
+
+  Source: Windows Security Event ID 4662 (An operation was performed on
+  an object) on Domain Controllers.
+
+  Detects a possible DCSync attack by checking for two replication-related
+  GUIDs requested by a non-Domain-Controller account:
+    - {1131f6aa-9c07-11d1-f79f-00c04fc2dcd2} : DS-Replication-Get-Changes
+    - {19195a5b-6da0-11d0-afd3-00c04fd930c9} : as captured in the original
+      rule screenshot (NOTE: your write-up's prose text names the second
+      right as "DS-Replication-Get-Changes-All", whose standard GUID is
+      actually 1131f6ad-9c07-11d1-f79f-00c04fc2dcd2 - one character off
+      from the first GUID. The value below is transcribed exactly as it
+      appeared in your rule screenshot; verify against your live Wazuh
+      config which of the two is correct before relying on this rule.)
+
+  The rule excludes legitimate machine/service accounts (computer
+  accounts ending in "$", SYSTEM, NT AUTHORITY, NETWORK SERVICE,
+  SERVICE LOCAL, S-1-5-18) so that only human/unexpected accounts
+  invoking replication rights trigger the alert.
+
+  Response: notification only (no automated account restriction), since
+  this attack often abuses privileged/sensitive accounts (e.g. the
+  Administrator account, or krbtgt itself downstream) where an
+  automated lockout could disrupt the domain. Alert sent to the domain
+  administrator via Shuffle (email), orchestrated from a Wazuh webhook
+  integration.
+-->
+<group name="windows,active_directory,attack,credential_access,">
+
+  <rule id="110001" level="12">
+    <if_sid>60103</if_sid>
+    <field name="win.system.eventID">^4662$</field>
+    <field name="win.eventdata.Properties" type="pcre2">{1131f6aa-9c07-11d1-f79f-00c04fc2dcd2}|{19195a5b-6da0-11d0-afd3-00c04fd930c9}</field>
+    <field name="win.eventdata.SubjectUserName" negate="yes" type="pcre2">(?i)(.*\$$|SYSTEM|Système|AUTORITE NT|NT AUTHORITY|NETWORK SERVICE|SERVICE LOCAL|S-1-5-18)</field>
+    <options>no_full_log</options>
+    <description>Possible Attaque DCSync détectée (Réplication demandée par un utilisateur).</description>
+    <mitre>
+      <id>T1003.006</id>
+    </mitre>
+  </rule>
+
+</group>
