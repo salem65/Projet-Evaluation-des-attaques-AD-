@@ -6,7 +6,7 @@ krbtgt. Comme la signature est valide, il accorde l'accès à n'importe quelle
 ressource sans vérifier si l'utilisateur existe vraiment ou si son mot de passe a changé
 
 
-# Pour forger le ticket, l’attaquant a besoin SID du Controleur de Domaine
+# Pour forger le ticket, l’attaquant a besoin du SID du Controleur de Domaine
 
 ```
 impacket-lookupsid lab-test.local/it_2:*********@192.168.174.133
