@@ -12,3 +12,7 @@ puis cracker le mot de passe off-line pour l’avoir en claire.
 ```
 impacket-GetUserSPNs lab-test.local/it_2:************* -dc-ip 192.168.174.133
 ```
+
+
+<img width="1605" height="612" alt="image" src="https://github.com/user-attachments/assets/e2b17c1a-bbb8-499c-8574-5e667f04d368" />
+
