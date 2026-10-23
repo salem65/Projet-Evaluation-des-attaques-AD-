@@ -14,8 +14,8 @@ leur exploitation dans un environnement contrôlé et les mécanismes de détect
 - Implémenter des mécanismes de détection
 - Automatiser la réponse à incident
 
-## Structure du projet
+## Structure de l'organisation 
 
-Voir les sections détaillées ci-dessous.
- 
+<img width="419" height="904" alt="image" src="https://github.com/user-attachments/assets/395b76e9-e14d-42b9-8026-22fac6fb5878" />
+
 
