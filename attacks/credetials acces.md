@@ -12,3 +12,6 @@ load kiwi
 
 kiwi_cmd sekurlsa::logonpasswords
 ```
+
+
+<img width="956" height="950" alt="image" src="https://github.com/user-attachments/assets/572b6b00-0c3a-4cdb-91c7-97e8033e8ea8" />
