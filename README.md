@@ -1,6 +1,6 @@
 # 🔐 Active Directory Attack Evaluation Lab
 
-⚠️ All attack simulations were performed in a controlled lab environment for educational purposes only.
+⚠️ All attack simulations were performed in a controlled lab environment for educational purposes and test only.
 
 
 Ce projet présente une analyse complète des principales attaques Active Directory,
