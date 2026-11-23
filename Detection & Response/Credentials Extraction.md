@@ -12,7 +12,7 @@ Windows security > security events
 <img width="2048" height="1080" alt="image" src="https://github.com/user-attachments/assets/ca977740-4537-464c-ac4c-e61ef90b3db9" />
 
 
-## ---------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------------------------------------------------
 Ainsi donc si nous pouvons voir dans les logs brutes de Windows les champs critiques qui nous indiquent qu’il y a eu
 une possible attaque d’extraction d’identifiants Notre règle avec pour ID 110008
 
